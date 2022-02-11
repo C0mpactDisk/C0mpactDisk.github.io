@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>app反编译工具 - CompactDisk</title>
+  <title>未授权访问总结 - CompactDisk</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -151,7 +151,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="app反编译工具">
+            <span class="h2" id="subtitle" title="未授权访问总结">
               
             </span>
 
@@ -161,8 +161,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-30 14:16" pubdate>
-        December 30, 2021 pm
+      <time datetime="2022-02-11 12:02" pubdate>
+        February 11, 2022 pm
       </time>
     </span>
   
@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      514 字
+      557 字
     </span>
   
 
@@ -213,47 +213,48 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">app反编译工具</h1>
+            <h1 style="display: none">未授权访问总结</h1>
             
             <div class="markdown-body">
-              <h2 id="反编译工具"><a href="#反编译工具" class="headerlink" title="反编译工具"></a>反编译工具</h2><p><a target="_blank" rel="noopener" href="https://github.com/iBotPeaches/Apktool/">apktool</a>：解压文件的布局文件、图片资源以及dex文件。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/pxb1988/dex2jar/">dex2jar</a>：将APK反编译为java源码，dex2jar在实际应用当中往往无法直接反编译apk文件，由apktool获取到dex文件，然后用dex2jar将其转换得到jar文件。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/java-decompiler/jd-gui">jd-gui</a>：查看APK中classes.dex转化成出的jar文件，即源码文件。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/skylot/jadx/">jdax</a>：支持直接打开apk、dex、jar、class、smail、zip、aar、arsc文件。</p>
-<p><a target="_blank" rel="noopener" href="https://bitbucket.org/JesusFreke/smali/downloads/">smail.jar</a>：将smail文件编译成dex文件。指定smail文件时直接指定目录即可。</p>
-<p><a target="_blank" rel="noopener" href="https://bitbucket.org/JesusFreke/smali/downloads/">baksmail.jar</a>：将dex文件反编译成smail文件。</p>
-<h2 id="apktool反编译app"><a href="#apktool反编译app" class="headerlink" title="apktool反编译app"></a>apktool反编译app</h2><p><strong>使用apktool解压APK文件</strong></p>
-<p>将 apktool.bat 和 apktool.jar 文件放到同一文件夹下，在该文件夹下打开cmd窗口，执行以下命令</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span>apktool.<span class="hljs-keyword">jar </span>-r d -f  xxx.apk  <br></code></pre></td></tr></table></figure>
+              <h3 id="未授权访问总结"><a href="#未授权访问总结" class="headerlink" title="未授权访问总结"></a>未授权访问总结</h3><p>总结了测试时遇到的一些未授权访问（截图仅做演示，均非真实环境）</p>
+<h5 id="1-redis未授权"><a href="#1-redis未授权" class="headerlink" title="1.redis未授权"></a>1.redis未授权</h5><p>默认端口6379，可能会被改成别的，直接redis-cli可连接</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs x86asm">redis-<span class="hljs-keyword">cli</span> -h <span class="hljs-built_in">ip</span> -p port<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//Android/image-20211212215315932.png" srcset="/img/loading.gif" lazyload alt="image-20211212215315932"></p>
-<p>解压完成在当前目录下会生成有一个同名的文件夹，文件夹内部是解压出来的文件。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//Android/image-20211212215358382.png" srcset="/img/loading.gif" lazyload alt="image-20211212215358382"></p>
-<p>文件夹内容如下，可以得到 xml、smali反汇编代码、res资源文件、assets配置文件、lib库文件</p>
-<ul>
-<li>classes.dex：java层的主要代码，即主程序</li>
-<li>META-INF：签名和证书相关文件 ·</li>
-<li>lib：native层的动态链接库文件（.so）目录，按照CPU架构作为子目录存放不同的so</li>
-<li>assets：打包的静态文件，通常存放需要读取的图片、加密代码等等</li>
-<li>res：资源目录</li>
-<li>AndroidManifest.xml：配置文件，默认状态为编译后的二进制文件</li>
-<li>resources.arsc： 资源配置文件，默认状态为编译后的二进制文件</li>
-</ul>
-<h2 id="打包app"><a href="#打包app" class="headerlink" title="打包app"></a>打包app</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># java -jar apktool.jar b -f 要打包的文件夹路径 -o 输出的apk路径</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//Android/image-20211212220024774.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="APP签名"><a href="#APP签名" class="headerlink" title="APP签名"></a>APP签名</h2><p>使用APK上上签。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//Android-test/image-20211212220403730.png" srcset="/img/loading.gif" lazyload alt="image-20211212220403730"></p>
-<p>打开后直接将APK文件拖入即可自动化签名，签名完成以后在原APK目录下创建一个新文件，xxx_signed.apk。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//Android-test/image-20211106171050041.png" srcset="/img/loading.gif" lazyload alt="image-20211106171050041"></p>
-<h2 id="dex2jar反编译APP"><a href="#dex2jar反编译APP" class="headerlink" title="dex2jar反编译APP"></a>dex2jar反编译APP</h2><p>流程：classes.dex——&gt;classes.jar</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">usage：<br>	d2j-dex2jar <span class="hljs-tag">&lt;<span class="hljs-name">dex</span> <span class="hljs-attr">filename</span>&gt;</span> -o <span class="hljs-tag">&lt;<span class="hljs-name">jar</span> <span class="hljs-attr">filename</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//Android-test/image-20211212220759452.png" srcset="/img/loading.gif" lazyload alt="image-20211212220759452"></p>
-<h2 id="smail编译成-dex文件"><a href="#smail编译成-dex文件" class="headerlink" title="smail编译成.dex文件"></a>smail编译成.dex文件</h2><p>流程：smali file * n——&gt; dex 文件</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">usage：<br>	<span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span>smail.<span class="hljs-keyword">jar </span>&lt;smali <span class="hljs-keyword">directory&gt; </span>-o &lt;dex <span class="hljs-keyword">directory+filename&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//Android-test/image-20211212221548025.png" srcset="/img/loading.gif" lazyload alt="image-20211212221548025"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121165254662.png" srcset="/img/loading.gif" lazyload alt="image-20220121165254662"></p>
+<p>linux写入计划任务、ssh公钥文件，windows写入启动项、mof文件等获取shell</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121165822684.png" srcset="/img/loading.gif" lazyload alt="image-20220121165822684"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121165834771.png" srcset="/img/loading.gif" lazyload alt="image-20220121165834771"></p>
+<h5 id="2-docker-api未授权"><a href="#2-docker-api未授权" class="headerlink" title="2.docker api未授权"></a>2.docker api未授权</h5><p>默认端口2375，访问此端口下/v1.23/containers/json目录或/version返回容器、版本信息可验证漏洞</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121172935549.png" srcset="/img/loading.gif" lazyload alt="image-20220121172935549"></p>
+<p>未授权可直接进入容器，通过挂载目录写入公钥文件、计划任务可逃逸至宿主机</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121173147922.png" srcset="/img/loading.gif" lazyload alt="image-20220121173147922"></p>
+<h5 id="3-VNC未授权"><a href="#3-VNC未授权" class="headerlink" title="3.VNC未授权"></a>3.VNC未授权</h5><p>vnc未授权可导致攻击者直接控制受控主机</p>
+<p>直接使用vnc viewer连接即可</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121175415478.png" srcset="/img/loading.gif" lazyload alt="image-20220121175415478"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121175552935.png" srcset="/img/loading.gif" lazyload alt="image-20220121175552935"></p>
+<h5 id="4-Elasticsearch未授权访问"><a href="#4-Elasticsearch未授权访问" class="headerlink" title="4.Elasticsearch未授权访问"></a>4.Elasticsearch未授权访问</h5><p>Elasticsearch默认端口为9200、9300端口，直接浏览器访问即可未授权检索数据</p>
+<p>使用ElasticHD可对未授权端口进行可视化管理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121195704556.png" srcset="/img/loading.gif" lazyload alt="image-20220121195704556"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121195715118.png" srcset="/img/loading.gif" lazyload alt="image-20220121195715118"></p>
+<h5 id="5-zookeeper未授权访问"><a href="#5-zookeeper未授权访问" class="headerlink" title="5.zookeeper未授权访问"></a>5.zookeeper未授权访问</h5><p>ZooKeeper默认开启在2181端口，在未进行任何访问控制情况下，攻击者未授权连入，获取大量信息包括系统信息、环境等</p>
+<p>利用可视化工具zoolnspector可对未授权端口进行连接</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121200943028.png" srcset="/img/loading.gif" lazyload alt="image-20220121200943028"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121201007566.png" srcset="/img/loading.gif" lazyload alt="image-20220121201007566"></p>
+<h5 id="6-Memcached未授权访问"><a href="#6-Memcached未授权访问" class="headerlink" title="6.Memcached未授权访问"></a>6.Memcached未授权访问</h5><p>Memcached是一种key-value缓存数据库，默认开启在11211端口，默认配置可未授权连接数据库获取信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121201235709.png" srcset="/img/loading.gif" lazyload alt="image-20220121201235709"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121201242744.png" srcset="/img/loading.gif" lazyload alt="image-20220121201242744"></p>
+<h5 id="7-Kibana-未授权访问"><a href="#7-Kibana-未授权访问" class="headerlink" title="7.Kibana 未授权访问"></a>7.Kibana 未授权访问</h5><p>默认端口为5601，直接访问<a target="_blank" rel="noopener" href="http://ip:5601/app/kibana#/%E5%8D%B3%E5%8F%AF%E7%BB%95%E8%BF%87%E7%99%BB%E5%BD%95%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE">http://ip:5601/app/kibana#/即可绕过登录直接访问</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121202257878.png" srcset="/img/loading.gif" lazyload alt="image-20220121202257878"></p>
+<h5 id="8-Prometheus-监控系统未授权访问"><a href="#8-Prometheus-监控系统未授权访问" class="headerlink" title="8.Prometheus 监控系统未授权访问"></a>8.Prometheus 监控系统未授权访问</h5><p>默认配置可直接访问，泄露系统监控信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121202505877.png" srcset="/img/loading.gif" lazyload alt="image-20220121202505877"></p>
+<h5 id="9-nacos-未授权"><a href="#9-nacos-未授权" class="headerlink" title="9.nacos 未授权"></a>9.nacos 未授权</h5><p>直接通过post传参数的形式即可无凭证未授权创建新的用户和密码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121203556124.png" srcset="/img/loading.gif" lazyload alt="image-20220121203556124"></p>
+<p>通过访问/nacos/v1/auth/users?pageNo=&amp;pageSize=路径可未授权查看username 和 password 的值</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121203637234.png" srcset="/img/loading.gif" lazyload alt="image-20220121203637234"></p>
+<h5 id="10-Druid-Monitor-未授权访问"><a href="#10-Druid-Monitor-未授权访问" class="headerlink" title="10.Druid Monitor 未授权访问"></a>10.Druid Monitor 未授权访问</h5><p>直接在目标网站的url后加上：/druid/index.html，即可绕过登录访问到Druid监控界面</p>
+<p>![image-20220121204130542](<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//">https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//</a> Unauthorized/image-20220121204130542.png)</p>
+<h5 id="11-Weblogic-Server-控制台未授权访问"><a href="#11-Weblogic-Server-控制台未授权访问" class="headerlink" title="11.Weblogic Server 控制台未授权访问"></a>11.Weblogic Server 控制台未授权访问</h5><p>低权限用户直接访问： <a href="http://ip:端口/console/images/%252E./console.portal即可未授权访问管理控制台">http://ip:端口/console/images/%252E./console.portal即可未授权访问管理控制台</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//%20Unauthorized/image-20220121204631935.png" srcset="/img/loading.gif" lazyload alt="image-20220121204631935"></p>
 
             </div>
             <hr>
@@ -264,7 +265,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                      <a class="hover-with-bg" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
                     
                   </div>
                 
@@ -281,18 +282,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/11/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%80%BB%E7%BB%93%20-%201/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">未授权访问总结</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/30/%E5%BA%94%E6%80%A5%E6%8E%92%E6%9F%A5-linux%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="hidden-mobile">应急响应-linux服务器排查</span>
+                      <a href="/2021/12/30/app%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/">
+                        <span class="hidden-mobile">app反编译工具</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
